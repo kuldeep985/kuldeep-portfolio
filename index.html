@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuldeep Thakkar - Data Analyst Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            color: #2c3e50;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        /* Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 1);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: #3498db !important;
+        }
+        .nav-link {
+            font-weight: 500;
+            color: #2c3e50 !important;
+            margin: 0 12px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3498db;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #3498db !important;
+        }
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #3498db 0%, #8e44ad 100%);
+            color: white;
+            padding: 200px 0 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.25);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.4);
+            animation: fadeInDown 1s ease-out;
+        }
+        .hero p {
+            font-size: 1.9rem;
+            margin: 25px 0;
+            animation: fadeInUp 1.2s ease-out;
+        }
+        .contact-info {
+            animation: fadeIn 1.5s ease-out;
+        }
+        .contact-info a, .contact-info span {
+            color: white;
+            margin: 0 18px;
+            text-decoration: none;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .contact-info a:hover, .contact-info span:hover {
+            color: #ffd700;
+            transform: scale(1.1);
+        }
+        /* Sections */
+        .section {
+            padding: 120px 0;
+            position: relative;
+        }
+        .section h2 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+        }
+        .section h2::after {
+            content: '';
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, #3498db, #8e44ad);
+            display: block;
+            margin: 20px auto 0;
+            border-radius: 5px;
+        }
+        .card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+            transition: all 0.4s ease;
+            background: white;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.18);
+        }
+        .card-body { padding: 40px; }
+        .card-title {
+            font-size: 1.9rem;
+            color: #3498db;
+            margin-bottom: 25px;
+        }
+        ul { padding-left: 0; list-style: none; }
+        ul li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 18px;
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+        }
+        ul li:hover {
+            transform: translateX(10px);
+        }
+        ul li::before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #2ecc71;
+            font-size: 1.2rem;
+        }
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .skill-badge {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 500;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+        }
+        .skill-badge:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+            position: relative;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: wave; /* Add wave effect if desired */
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .hero p { font-size: 1.5rem; }
+            .section h2 { font-size: 2.2rem; }
+        }
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Kuldeep Thakkar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#resume" style="color: #e74c3c;">Resume</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="hero" id="about">
+        <div class="container hero-content">
+            <h1>Kuldeep Thakkar</h1>
+            <p>Data Analyst | Python • SQL • Power BI • Tableau</p>
+            <div class="contact-info">
+                <span><i class="fas fa-map-marker-alt"></i> Ahmedabad, India</span>
+                <span><i class="fas fa-phone"></i> +91 8511548308</span>
+                <span><i class="fas fa-envelope"></i> kuldeepthakkar301@gmail.com</span>
+                <a href="https://linkedin.com/in/kuldeep-thakkar-ab220523b" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/kuldeep985" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About/Profile Section -->
+    <section class="section bg-light animate__animated animate__fadeIn" id="profile">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="card animate__animated animate__zoomIn">
+                        <div class="card-body text-center">
+                            <p class="card-text">Data Analyst skilled in Python, SQL, Power BI, Tableau, and Excel with experience in building dashboards, performing end-to-end data analysis, and generating actionable business insights. Strong at DAX, data modeling, and storytelling through visuals. Seeking data analyst roles where I can contribute analytical thinking and business-focused insights.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section animate__animated animate__fadeIn" id="experience">
+        <div class="container">
+            <h2>Experience</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card animate__animated animate__zoomIn" style="animation-delay: 0.2s;">
+                        <div class="card-body">
+                            <h4 class="card-title">Freelance Data Analyst | Jan 2024 – Present | Ahmedabad</h4>
+                            <ul>
+                                <li>Designed Tableau dashboards to analyze accident data and identify high-risk zones.</li>
+                                <li>Built logistic regression model (Titanic dataset) achieving 78% accuracy.</li>
+                                <li>Performed end-to-end analysis using Python, SQL, Power BI, and Tableau.</li>
+                                <li>Executed complete workflow: data cleaning, modeling, visualization, insight reporting.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section bg-light animate__animated animate__fadeIn" id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card animate__animated animate__zoomIn" style="animation-delay: 0.3s;">
+                        <div class="card-body">
+                            <h4 class="card-title">Reliance Business Performance Dashboard (Power BI, DAX)</h4>
+                            <ul>
+                                <li>Developed multi-page dashboard comparing Retail (FMCG) and Fuel division performance.</li>
+                                <li>Structured synthetic dataset with seasonality; performed Power Query transformations.</li>
+                                <li>Built star-schema model with Date Table and relationships.</li>
+                                <li>Created DAX measures: Total Sales, Profit, Margin %, MoM Growth, YoY Trends.</li>
+                                <li>Insights: seasonal demand patterns, top regions, margin inconsistencies, revenue gaps.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card animate__animated animate__zoomIn" style="animation-delay: 0.4s;">
+                        <div class="card-body">
+                            <h4 class="card-title">Cleaning Services Performance Dashboard (Power BI)</h4>
+                            <ul>
+                                <li>Built operational + financial performance dashboard for cleaning services company.</li>
+                                <li>KPIs tracked: Total Revenue, Avg. Hours Worked, Customer Rating, Productivity Score.</li>
+                                <li>Visualized revenue by suburb, service type, and monthly trends.</li>
+                                <li>Added slicers for Date, Suburb, Service Type, Payment Status.</li>
+                                <li>Insights: high-performing suburbs, strong service categories, seasonal changes.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section animate__animated animate__fadeIn" id="skills">
+        <div class="container">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <span class="skill-badge animate__animated animate__bounceIn" style="animation-delay: 0.1s;">Python (Pandas, NumPy, Matplotlib)</span>
+                <span class="skill-badge animate__animated animate__bounceIn" style="animation-delay: 0.2s;">SQL</span>
+                <span class="skill-badge animate__animated animate__bounceIn" style="animation-delay: 0.3s;">Power BI</span>
+                <span class="skill-badge animate__animated animate__bounceIn" style="animation-delay: 0.4s;">DAX</span>
+                <span class="skill-badge animate__animated animate__bounceIn" style="animation-delay: 0.5s;">Tableau</span>
+                <span class="skill-badge animate__animated animate__bounceIn" style="animation-delay: 0.6s;">Excel</span>
+                <span class="skill-badge animate__animated animate__bounceIn" style="animation-delay: 0.7s;">Data Modeling</span>
+                <span class="skill-badge animate__animated animate__bounceIn" style="animation-delay: 0.8s;">EDA</span>
+                <span class="skill-badge animate__animated animate__bounceIn" style="animation-delay: 0.9s;">Dashboarding</span>
+                <span class="skill-badge animate__animated animate__bounceIn" style="animation-delay: 1s;">Visualization</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section class="section bg-light animate__animated animate__fadeIn" id="education">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card animate__animated animate__zoomIn">
+                        <div class="card-body">
+                            <p class="card-title mb-3"><strong>MCA</strong> – SVGU (2023–2025)</p>
+                            <p class="card-title"><strong>BCA</strong> – Gujarat University (2020–2023)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications & Languages -->
+    <section class="section animate__animated animate__fadeIn" id="certifications">
+        <div class="container">
+            <h2>Certifications & Languages</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card animate__animated animate__zoomIn" style="animation-delay: 0.2s;">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Certifications</h4>
+                            <p>GRRAS Solutions – Data Science</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card animate__animated animate__zoomIn" style="animation-delay: 0.3s;">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Languages</h4>
+                            <p>English, Gujarati, Hindi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section bg-light animate__animated animate__fadeIn" id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card animate__animated animate__zoomIn">
+                        <div class="card-body text-center">
+                            <p><i class="fas fa-envelope"></i> kuldeepthakkar301@gmail.com</p>
+                            <p><i class="fas fa-phone"></i> +91 8511548308</p>
+                            <p><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/kuldeep-thakkar-ab220523b" target="_blank" style="color:#3498db;">linkedin.com/in/kuldeep-thakkar-ab220523b</a></p>
+                            <p><a href="https://github.com/kuldeep985" target="_blank"><i class="fab fa-github"></i> GitHub</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume -->
+    <section class="section animate__animated animate__fadeIn" id="resume">
+        <div class="container text-center">
+            <h2>Download Resume</h2>
+            <a href="Kuldeep_Thakkar_Data_Analyst_Resume.pdf
+" class="btn btn-primary btn-lg animate__animated animate__pulse animate__infinite" download style="background: linear-gradient(135deg, #3498db, #8e44ad); border: none;">Download My Resume (PDF)</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Kuldeep Thakkar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a.nav-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 100);
+        });
+    </script>
+</body>
+</html>
